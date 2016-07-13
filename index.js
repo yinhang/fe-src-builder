@@ -9,6 +9,7 @@ var fesrcb = {
     },
     buildRJS: function () {
         console.log("开始打包requirejs");
+        console.log(env.PWD + "/static/js/app/boot/");
         var paths = fs.readdirSync(env.PWD + "/static/js/app/boot/");
         console.log(paths);
         console.log("完成打包requirejs");
