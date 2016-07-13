@@ -14,10 +14,10 @@ var fesrcb = {
             fs.unlink(configFilePath);
         }
         childProcess.stdin
-        var tplData = fs.readFileSync(__dirname + "/res/fesrcb-config_tpl.json");
+        var tplData = fs.readFileSync(__dirname + "/res/fesrcb-config_tpl.json", "utf8");
         console.log(tplData)
         tplData = tplData.replace("_PROJCET_PATH_", env.PWD);
-        fs.writeFileSync(configFilePath, tplData);
+        fs.writeFileSync(configFilePath, tplData, "utf8");
 
     },
     cmd: function (cmd) {
