@@ -15,6 +15,7 @@ var fesrcb = {
         }
         childProcess.stdin
         var tplData = fs.readFileSync(__dirname + "/res/fesrcb-config_tpl.json");
+        console.log(tplData)
         tplData = tplData.replace("_PROJCET_PATH_", env.PWD);
         fs.writeFileSync(configFilePath, tplData);
 
