@@ -18,7 +18,7 @@ var fesrcb = {
         var tplData = fs.readFileSync(__dirname + "/res/fesrcb-config_tpl.json", "utf8");
         tplData = tplData.replace("_PROJECT_PATH_", env.PWD);
 
-        var ri = readline.Interface;
+        var ri = new readline.Interface();
 
         ri.question("请输入fe-src路径: " + env.PWD + "/", function (answer) {
             tplData = tplData.replace("_FESRC_PATH_", answer);
