@@ -17,13 +17,16 @@ var fesrcb = {
 
         var tplData = fs.readFileSync(__dirname + "/res/fesrcb-config_tpl.json", "utf8");
         tplData = tplData.replace("_PROJECT_PATH_", env.PWD);
-        readline.question("请输入fe-src路径: " + env.PWD + "/", function (answer) {
+
+        var ri = readline.Interface;
+
+        ri.question("请输入fe-src路径: " + env.PWD + "/", function (answer) {
             tplData = tplData.replace("_FESRC_PATH_", answer);
 
-            readline.question("请输入目标static路径: " + env.PWD + "/", function (answer) {
+            ri.question("请输入目标static路径: " + env.PWD + "/", function (answer) {
                 tplData = tplData.replace("_STATIC_TARGET_PATH_", answer);
 
-                readline.question("请输入目标tpl路径: " + env.PWD + "/", function (answer) {
+                ri.question("请输入目标tpl路径: " + env.PWD + "/", function (answer) {
                     tplData = tplData.replace("_TPL_TARGET_PATH_", answer);
                     fs.writeFileSync(configFilePath, tplData, "utf8");
                 });
