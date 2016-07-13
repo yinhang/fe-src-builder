@@ -14,7 +14,7 @@ var fesrcb = {
             fs.unlink(configFilePath);
         }
         childProcess.stdin
-        var tplData = fe.readFileSync(__dirname + "/res/fesrcb-config_tpl");
+        var tplData = fs.readFileSync(__dirname + "/res/fesrcb-config_tpl");
         tplData = tplData.replace("_PROJCET_PATH_", env.PWD);
         fs.writeFileSync(configFilePath, tplData);
 
