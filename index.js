@@ -12,7 +12,7 @@ var fesrcb = {
         {
             fs.unlink(configFilePath);
         }
-        console.log(fs.existsSync("./res/fesrcb-config_tpl.json"))
+        console.log(env)
 
     },
     cmd: function (cmd) {
