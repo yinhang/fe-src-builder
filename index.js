@@ -15,8 +15,8 @@ var fesrcb = {
         }
         childProcess.stdin
         var tplData = fs.readFileSync(__dirname + "/res/fesrcb-config_tpl.json", "utf8");
+        tplData = tplData.replace("_PROJECT_PATH_", env.PWD);
         console.log(tplData)
-        tplData = tplData.replace("_PROJCET_PATH_", env.PWD);
         fs.writeFileSync(configFilePath, tplData, "utf8");
 
     },
