@@ -12,7 +12,7 @@ var fesrcb = {
         {
             fs.unlink(configFilePath);
         }
-        console.log(env)
+        console.log(__dirname)
 
     },
     cmd: function (cmd) {
