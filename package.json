@@ -1,13 +1,13 @@
 {
   "name": "fe-src-builder",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "fe-src-builder for fe-src",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-      "fesrcb": "bin/fesrcb"
+    "fesrcb": "bin/fesrcb"
   },
   "repository": {
     "type": "git",
