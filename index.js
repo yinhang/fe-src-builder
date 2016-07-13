@@ -2,10 +2,18 @@ var process = require("process");
 var fs = require("fs");
 
 var env = process.env;
+var configFileName = "fesrcb-config.json";
 
 var fesrcb = {
+    init: function () {
+        if(fs.existsSync(configFileName))
+        {
+            fs.rmdirSync(configFileName);
+        }
+    },
     cmd: function (cmd) {
-        fesrcb.buildRJS();
+        fesrcb.init();
+        //fesrcb.buildRJS();
     },
     buildRJS: function () {
         console.log("开始打包requirejs");
