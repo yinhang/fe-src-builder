@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/yinhang/fe-src-builder/issues"
   },
+  "dependencies": {
+    "requirejs": "2.1.15"
+  },
   "homepage": "https://github.com/yinhang/fe-src-builder"
 }
