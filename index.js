@@ -6,10 +6,14 @@ var configFileName = "fesrcb-config.json";
 
 var fesrcb = {
     init: function () {
-        if(fs.existsSync(configFileName))
+        var configFilePath = env.PWD + "/" + configFileName;
+
+        if(fs.existsSync(configFilePath))
         {
-            fs.unlink(configFileName);
+            fs.unlink(configFilePath);
         }
+        console.log(fs.existsSync("./res/fesrcb-config_tpl.json"))
+
     },
     cmd: function (cmd) {
         fesrcb.init();
