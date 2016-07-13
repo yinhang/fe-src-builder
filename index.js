@@ -9,14 +9,30 @@ var fesrcb = {
     },
     buildRJS: function () {
         console.log("开始打包requirejs");
-        console.log(env.PWD + "/static/js/app/boot/");
+        var paths = null;
+        var bootDir = env.PWD + "/static/js/app/boot/";
+
         try {
-            var paths = fs.readdirSync(env.PWD + "/static/js/app/boot/");
+            var paths = fs.readdirSync(bootDir);
         } catch(e)
         {
-            console.error("不是合法的fe-src目录");
+            console.error("\"" + env.PWD + "\"不是合法的fe-src目录");
             return;
         }
+
+        if(paths && paths.length > 0)
+        {
+            for(var i = 0, l = paths.length; i < l; ++ i)
+            {
+                var path = paths[i];
+                var stat = fs.statSync(path);
+                if(stat.isDirectory())
+                {
+                    fs.writeFileSync(bootDir + path, new Date().getTime() + "");
+                }
+            }
+        }
+
         console.log("完成打包requirejs");
     }
 };
