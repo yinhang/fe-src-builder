@@ -7,8 +7,8 @@ var env = process.env;
 var configFileName = "fesrcb-config.json";
 
 var readlineInterface = readline.createInterface({
-    input: childProcess.stdin,
-    output: childProcess.stdout
+    input: process.stdin,
+    output: process.stdout
 });
 
 var fesrcb = {
@@ -23,7 +23,21 @@ var fesrcb = {
         var tplData = fs.readFileSync(__dirname + "/res/fesrcb-config_tpl.json", "utf8");
         tplData = tplData.replace("_PROJECT_PATH_", env.PWD);
 
-        
+        readlineInterface.question("请输入fe-src路径: " + env.PWD + "/", function (answer) {
+            tplData = tplData.replace("_FESRC_PATH_", answer);
+
+            readlineInterface.question("请输入目标static路径: " + env.PWD + "/", function (answer) {
+                tplData = tplData.replace("_STATIC_TARGET_PATH_", answer);
+
+                readlineInterface.question("请输入目标tpl路径: " + env.PWD + "/", function (answer) {
+                    tplData = tplData.replace("_TPL_TARGET_PATH_", answer);
+                    fs.writeFileSync(configFilePath, tplData, "utf8");
+                    readlineInterface.close();
+                });
+
+            });
+
+        });
 
     },
     cmd: function (cmd) {
