@@ -41,7 +41,8 @@ var fesrcb = {
 
     },
     cmd: function (cmd) {
-        fesrcb.init();
+        console.log(cmd)
+        //fesrcb.init();
         //fesrcb.buildRJS();
     },
     buildRJS: function () {
