@@ -25,10 +25,10 @@ var fesrcb = {
             for(var i = 0, l = paths.length; i < l; ++ i)
             {
                 var path = paths[i];
-                var stat = fs.statSync(path);
+                var stat = fs.statSync(bootDir + path);
                 if(stat.isDirectory())
                 {
-                    fs.writeFileSync(bootDir + path, new Date().getTime() + "");
+                    fs.writeFileSync(bootDir + path + "/version.js", new Date().getTime() + "");
                 }
             }
         }
