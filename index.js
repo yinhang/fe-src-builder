@@ -1,5 +1,6 @@
 var process = require("process");
 var fs = require("fs");
+var childProcess = require("child_process");
 
 var env = process.env;
 var configFileName = "fesrcb-config.json";
@@ -12,7 +13,10 @@ var fesrcb = {
         {
             fs.unlink(configFilePath);
         }
-        console.log(__dirname)
+        childProcess.stdin
+        var tplData = fe.readFileSync(__dirname + "/res/fesrcb-config_tpl");
+        tplData = tplData.replace("_PROJCET_PATH_", env.PWD);
+        fs.writeFileSync(configFilePath, tplData);
 
     },
     cmd: function (cmd) {
