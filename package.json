@@ -1,0 +1,22 @@
+{
+  "name": "fe-src-builder",
+  "version": "1.0.0",
+  "description": "fe-src-builder for fe-src",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yinhang/fe-src-builder.git"
+  },
+  "keywords": [
+    "fe-src-builder"
+  ],
+  "author": "yinhang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yinhang/fe-src-builder/issues"
+  },
+  "homepage": "https://github.com/yinhang/fe-src-builder"
+}
