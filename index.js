@@ -8,7 +8,7 @@ var fesrcb = {
     init: function () {
         if(fs.existsSync(configFileName))
         {
-            fs.rmdirSync(configFileName);
+            fs.unlink(configFileName);
         }
     },
     cmd: function (cmd) {
