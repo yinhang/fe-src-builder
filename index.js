@@ -96,7 +96,7 @@ var fesrcb = {
                     console.log("处理\"" + appBootPath + "\"");
                     fs.writeFileSync(appBootPath + "/version.js", new Date().getTime() + "");
                     fs.writeFileSync(jsPath + "/boot.js", fs.readFileSync(appBootPath + "/boot.js", "utf8"), "utf8");
-
+                    console.log("准备执行r.js在: " + jsPath)
                     childProcess.exec("r.js -o rjsbuild.txt out=boot_aio.js optimize=none", {
                         cwd: jsPath
                     }, function (err, stdout, stdin) {
