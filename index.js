@@ -93,6 +93,7 @@ var fesrcb = {
                 var stat = fs.statSync(appBootPath);
                 if(stat.isDirectory())
                 {
+                    console.log("处理\"" + appBootPath + "\"");
                     fs.writeFileSync(appBootPath + "/version.js", new Date().getTime() + "");
                     fs.writeFileSync(jsPath + "/boot.js", fs.readFileSync(appBootPath + "/boot.js", "utf8"), "utf8");
 
