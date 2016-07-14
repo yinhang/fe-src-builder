@@ -13,8 +13,9 @@ const readlineInterface = readline.createInterface({
     output: process.stdout
 });
 
-function readConfig() {
-
+function getConfig() {
+    var config = eval("(" + fs.readFileSync(configFilePath, "utf8") + ")");
+    return config;
 };
 
 var fesrcb = {
@@ -51,13 +52,17 @@ var fesrcb = {
         {
             fesrcb.init();
         }
-        switch (cmd[2])
-        {
-            case "-w":
-                
-                break;
 
-        }
+        commander
+            .option("-d, --dev", "开发模式")
+            .option("-w, --watch", "工程改动后自动编译")
+            .parse(cmd);
+
+        var config = getConfig();
+
+        console.log(config)
+
+
     },
     buildRJS: function () {
         console.log("开始打包requirejs");
