@@ -58,22 +58,29 @@ var fesrcb = {
             .option("-w, --watch", "工程改动后自动编译")
             .parse(cmd);
 
-        var config = getConfig();
-
-        console.log(config.projectPath)
+        fesrcb.buildRJS();
 
 
     },
     buildRJS: function () {
         console.log("开始打包requirejs");
+
+        var config = getConfig();
+
+        var fesrcPath = config.projectPath + "/" + config.fesrcPath;
+        var staticPath = fesrcPath + "/static";
+        var jsPath = staticPath + "/js";
+        var bootDir = jsPath + "/app/boot";
+
+        fs.writeFileSync(jsPath + "/rjsbuild.txt", fs.readFileSync(bootDir + "/rjsbuild.txt", "utf8"), "utf8");
+
         var paths = null;
-        var bootDir = env.PWD + "/static/js/app/boot/";
 
         try {
-            var paths = fs.readdirSync(bootDir);
+            paths = fs.readdirSync(bootDir);
         } catch(e)
         {
-            console.error("\"" + env.PWD + "\"不是合法的fe-src目录");
+            console.error("\"" + fesrcPath + "\"不是合法的fe-src目录");
             return;
         }
 
@@ -82,13 +89,26 @@ var fesrcb = {
             for(var i = 0, l = paths.length; i < l; ++ i)
             {
                 var path = paths[i];
-                var stat = fs.statSync(bootDir + path);
+                var appBootPath = bootDir + "/" + path;
+                var stat = fs.statSync(appBootPath);
                 if(stat.isDirectory())
                 {
-                    fs.writeFileSync(bootDir + path + "/version.js", new Date().getTime() + "");
+                    fs.writeFileSync(appBootPath + "/version.js", new Date().getTime() + "");
+                    fs.writeFileSync(jsPath + "/boot.js", fs.readFileSync(appBootPath + "/boot.js", "utf8"), "utf8");
+
+                    childProcess.exec("r.js -o rjsbuild.txt out=boot_aio.js optimize=none", {
+                        cwd: jsPath
+                    }, function (err, stdout, stdin) {
+                        console.log(stdout);
+                        fs.writeFileSync(appBootPath + "/boot_aio.js", fs.readFileSync(jsPath + "/boot_aio.js", "utf8"), "utf8");
+                        fs.unlink(jsPath + "/boot_aio.js");
+                    });
                 }
             }
+
         }
+
+        fs.unlink(jsPath + "/rjsbuild.txt");
 
         console.log("完成打包requirejs");
     }
