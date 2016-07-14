@@ -2,18 +2,23 @@ var process = require("process");
 var fs = require("fs");
 var childProcess = require("child_process");
 var readline = require("readline");
+var commander = require('commander');
 
 var env = process.env;
 var configFileName = "fesrcb-config.json";
+var configFilePath = env.PWD + "/" + configFileName;
 
-var readlineInterface = readline.createInterface({
+const readlineInterface = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
+function readConfig() {
+
+};
+
 var fesrcb = {
     init: function () {
-        var configFilePath = env.PWD + "/" + configFileName;
 
         if(fs.existsSync(configFilePath))
         {
@@ -41,9 +46,18 @@ var fesrcb = {
 
     },
     cmd: function (cmd) {
-        console.log(cmd)
-        //fesrcb.init();
-        //fesrcb.buildRJS();
+
+        if(fs.existsSync(configFilePath) == false)
+        {
+            fesrcb.init();
+        }
+        switch (cmd[2])
+        {
+            case "-w":
+                
+                break;
+
+        }
     },
     buildRJS: function () {
         console.log("开始打包requirejs");
