@@ -71,8 +71,8 @@ var fesrcb = {
         var staticPath = fesrcPath + "/static";
         var jsPath = staticPath + "/js";
         var bootDir = jsPath + "/app/boot";
+
         fs.writeFileSync(jsPath + "/rjsbuild.txt", fs.readFileSync(bootDir + "/rjsbuild.txt", "utf8"), "utf8");
-        console.log("读取{jspath}/rjsbuild.txt: " + fs.readFileSync(jsPath + "/rjsbuild.txt", "utf8"))
 
         var paths = null;
 
@@ -100,6 +100,11 @@ var fesrcb = {
                     childProcess.exec("r.js -o rjsbuild.txt out=boot_aio.js optimize=none", {
                         cwd: jsPath
                     }, function (err, stdout, stdin) {
+                        if(err)
+                        {
+                            console.log(err);
+                            return;
+                        }
                         console.log(stdout);
                         fs.writeFileSync(appBootPath + "/boot_aio.js", fs.readFileSync(jsPath + "/boot_aio.js", "utf8"), "utf8");
                         fs.unlink(jsPath + "/boot_aio.js");
