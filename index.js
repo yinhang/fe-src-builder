@@ -60,7 +60,7 @@ var fesrcb = {
 
         var config = getConfig();
 
-        console.log(config)
+        console.log(config.projectPath)
 
 
     },
