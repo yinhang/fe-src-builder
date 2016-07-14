@@ -71,8 +71,8 @@ var fesrcb = {
         var staticPath = fesrcPath + "/static";
         var jsPath = staticPath + "/js";
         var bootDir = jsPath + "/app/boot";
-        console.log("读取rjsbuild.txt: " + fs.readFileSync(bootDir + "/rjsbuild.txt", "utf8"))
         fs.writeFileSync(jsPath + "/rjsbuild.txt", fs.readFileSync(bootDir + "/rjsbuild.txt", "utf8"), "utf8");
+        console.log("读取{jspath}/rjsbuild.txt: " + fs.readFileSync(jsPath + "/rjsbuild.txt", "utf8"))
 
         var paths = null;
 
