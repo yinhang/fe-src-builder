@@ -81,7 +81,7 @@ var fesrcb = {
 
         console.log("fis3: "+ fis3ReleaseCMD)
 
-        console.log(childProcess.execSync(fis3ReleaseCMD.join(" "), {
+        console.log(childProcess.execSync(fis3ReleaseCMD, {
             cwd: fesrcPath
         }).toString());
 
