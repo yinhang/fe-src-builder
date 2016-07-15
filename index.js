@@ -44,6 +44,7 @@ var fesrcb = {
             fesrcb.init(function () {
                 fesrcb.cmd(cmd);
             });
+            return;
         }
 
         commander
