@@ -1,6 +1,5 @@
 {
     "projectPath": "_PROJECT_PATH_",
     "fesrcPath": "_FESRC_PATH_",
-    "staticTargetPath": "_STATIC_TARGET_PATH_",
-    "tplTargetPath": "_TPL_TARGET_PATH_"
+    "clean": []
 }

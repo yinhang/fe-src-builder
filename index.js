@@ -31,17 +31,8 @@ var fesrcb = {
 
         readlineInterface.question("请输入fe-src路径: " + env.PWD + "/", function (answer) {
             tplData = tplData.replace("_FESRC_PATH_", answer);
-
-            readlineInterface.question("请输入目标static路径: " + env.PWD + "/", function (answer) {
-                tplData = tplData.replace("_STATIC_TARGET_PATH_", answer);
-
-                readlineInterface.question("请输入目标tpl路径: " + env.PWD + "/", function (answer) {
-                    tplData = tplData.replace("_TPL_TARGET_PATH_", answer);
-                    fs.writeFileSync(configFilePath, tplData, "utf8");
-                    readlineInterface.close();
-                });
-
-            });
+            fs.writeFileSync(configFilePath, tplData, "utf8");
+            readlineInterface.close();
 
         });
 
@@ -54,12 +45,42 @@ var fesrcb = {
         }
 
         commander
-            .option("-d, --dev", "开发模式")
+            .option("-m, --mode [name]", "fis发布模式")
             .option("-w, --watch", "工程改动后自动编译")
             .parse(cmd);
 
         fesrcb.buildRJS();
+        fesrcb.clean();
+        fesrcb.fisRelease(commander.mode, commander.watch);
 
+    },
+    fisRelease: function (mode, watch) {
+
+        var config = getConfig();
+
+        var fesrcPath = config.projectPath + "/" + config.fesrcPath;
+
+        var fis3ReleaseCMD = [
+            "fis3 release"
+        ];
+
+        if(mode)
+        {
+            fis3ReleaseCMD.push(mode);
+        }
+
+        if(watch)
+        {
+            fis3ReleaseCMD.push("-w");
+        }
+
+        fis3ReleaseCMD = fis3ReleaseCMD.join(" ");
+
+        console.log("fis3: "+ fis3ReleaseCMD)
+
+        console.log(childProcess.execSync(fis3ReleaseCMD.join(" "), {
+            cwd: fesrcPath
+        }).toString());
 
     },
     buildRJS: function () {
@@ -112,6 +133,23 @@ var fesrcb = {
         fs.unlink(jsPath + "/rjsbuild.txt");
 
         console.log("完成打包requirejs");
+
+    },
+    clean: function () {
+
+        console.log("删除老文件。。。");
+
+        var config = getConfig();
+
+        var clean = config.clean;
+
+        var projectPath = config.projectPath;
+
+        for(var i = 0, l = clean.length; i < l; ++ i)
+        {
+            var cleanPath = projectPath + "/" + clean[i];
+            fs.unlink(cleanPath);
+        }
     }
 };
 
