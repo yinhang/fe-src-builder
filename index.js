@@ -81,10 +81,12 @@ var fesrcb = {
 
         console.log("fis3: "+ fis3ReleaseCMD)
 
-        childProcess.exec(fis3ReleaseCMD, function (err, stdout, stdin) {
-            console.log(stdout);
-        }).on("message", function (data) {
-            console.log(data)
+        childProcess.execSync(fis3ReleaseCMD, {
+            stdio: [
+                0, // Use parents stdin for child
+                'pipe', // Pipe child's stdout to parent
+                null
+            ]
         });
 
     },
