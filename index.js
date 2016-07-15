@@ -23,6 +23,26 @@ var fis3ReleaseProcess = null;
 var processExited = false;
 var fis3ReleaseProcessExited = false;
 
+function delFolder(path) {
+    if(fs.existsSync(path))
+    {
+        var subPaths = fs.readdirSync(path);
+        subPaths.forEach(function (subPath) {
+            var subPath = path + "/" + subPath;
+            var stat = fs.statSync(subPath);
+            if(stat.isDirectory())
+            {
+                delFolder(subPath);
+            }
+            else
+            {
+                fs.unlinkSync(path);
+            }
+        });
+        fs.redirSync(path);
+    }
+};
+
 var fesrcb = {
     init: function (complete) {
 
@@ -216,8 +236,7 @@ var fesrcb = {
             if(fs.existsSync(cleanPath))
             {
                 console.log("删除\"" + cleanPath + "\"");
-                fs.chmodSync(cleanPath, "777");
-                fs.unlink(cleanPath);
+                delFolder(cleanPath);
             }
         }
     }
