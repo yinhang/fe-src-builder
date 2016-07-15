@@ -81,16 +81,15 @@ var fesrcb = {
 
         console.log("fis3: "+ fis3ReleaseCMD)
 
-        var fis3ReleaseProcess = childProcess.exec(fis3ReleaseCMD, function (err, stdout, stdin) {
-            fesrcb.cleanTmpFiles();
-            process.exit(1);
+        var fis3ReleaseProcess = childProcess.exec(fis3ReleaseCMD, {
+            cwd: fesrcPath
         });
 
-        /*fis3ReleaseProcess.on("close", function (code, signal) {
+        fis3ReleaseProcess.on("close", function (code, signal) {
             console.log(code + ":" + signal)
             fesrcb.cleanTmpFiles();
             process.exit(1);
-        });*/
+        });
 
         readlineInterface.question("按下\"q\"结束fesrcb\n", function (answer) {
             console.log("usertype: " + answer)
