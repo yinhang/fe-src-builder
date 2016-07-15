@@ -81,14 +81,53 @@ var fesrcb = {
 
         console.log("fis3: "+ fis3ReleaseCMD)
 
-        childProcess.execSync(fis3ReleaseCMD, {
-            stdio: [
-                0, // Use parents stdin for child
-                'pipe', // Pipe child's stdout to parent
-                fs.openSync('err.out', 'w')
-            ]
+        var childProcess = childProcess.exec(fis3ReleaseCMD);
+
+        childProcess.on("close", function () {
+            fesrcb.cleanTmpFiles();
+            process.exit(1);
         });
 
+        readlineInterface.question("按下任意键结束fesrcb", function (answer) {
+            childProcess.kill();
+        });
+
+    },
+    cleanTmpFiles: function () {
+        console.log("清理临时文件。。。");
+
+        var config = getConfig();
+
+        var fesrcPath = config.projectPath + "/" + config.fesrcPath;
+        var staticPath = fesrcPath + "/static";
+        var jsPath = staticPath + "/js";
+        var bootDir = jsPath + "/app/boot";
+
+        var paths = null;
+
+        try {
+            paths = fs.readdirSync(bootDir);
+        } catch(e)
+        {
+            console.error("\"" + fesrcPath + "\"不是合法的fe-src目录");
+            return;
+        }
+
+        if(paths && paths.length > 0)
+        {
+            for(var i = 0, l = paths.length; i < l; ++ i)
+            {
+                var path = paths[i];
+                var appBootPath = bootDir + "/" + path;
+                var stat = fs.statSync(appBootPath);
+                if(stat.isDirectory())
+                {
+                    fs.unlink(appBootPath + "/boot_aio.js");
+                    fs.unlink(appBootPath + "/version.js");
+                }
+            }
+
+        }
     },
     buildRJS: function () {
         console.log("开始打包requirejs");
