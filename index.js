@@ -86,13 +86,11 @@ var fesrcb = {
         });
 
         fis3ReleaseProcess.on("close", function (code, signal) {
-            console.log(code + ":" + signal)
             fesrcb.cleanTmpFiles();
             process.exit(1);
         });
 
-        readlineInterface.question("按下\"q\"结束fesrcb\n", function (answer) {
-            console.log("usertype: " + answer)
+        readlineInterface.question("按下\"回车\"结束fesrcb\n", function (answer) {
             if(answer == "q")
             {
                 fis3ReleaseProcess.kill();
