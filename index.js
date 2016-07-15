@@ -85,6 +85,8 @@ var fesrcb = {
             cwd: fesrcPath
         }).toString());
 
+        process.exit(1);
+
     },
     buildRJS: function () {
         console.log("开始打包requirejs");
