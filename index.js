@@ -114,7 +114,6 @@ var fesrcb = {
 
     },
     cleanTmpFiles: function () {
-        console.log("清理临时文件。。。");
 
         var config = getConfig();
 
