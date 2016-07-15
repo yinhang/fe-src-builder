@@ -18,6 +18,11 @@ function getConfig() {
     return config;
 };
 
+var fis3ReleaseProcess = null;
+
+var processExited = false;
+var fis3ReleaseProcessExited = false;
+
 var fesrcb = {
     init: function (complete) {
 
@@ -56,6 +61,11 @@ var fesrcb = {
         fesrcb.clean();
         fesrcb.fisRelease(commander.mode, commander.watch);
 
+        process.on("SIGINT", function () {
+            processExited = true;
+            fis3ReleaseProcess.kill();
+        });
+
     },
     fisRelease: function (mode, watch) {
 
@@ -81,12 +91,9 @@ var fesrcb = {
 
         console.log("fis3: "+ fis3ReleaseCMD)
 
-        var fis3ReleaseProcess = childProcess.exec(fis3ReleaseCMD, {
+        fis3ReleaseProcess = childProcess.exec(fis3ReleaseCMD, {
             cwd: fesrcPath
         });
-
-        var processExited = false;
-        var fis3ReleaseProcessExited = false;
 
         fis3ReleaseProcess.on("exit", function (code, signal) {
             fis3ReleaseProcessExited = true;
