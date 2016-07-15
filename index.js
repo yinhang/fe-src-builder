@@ -213,6 +213,7 @@ var fesrcb = {
         for(var i = 0, l = clean.length; i < l; ++ i)
         {
             var cleanPath = projectPath + "/" + clean[i];
+            console.log("删除\"" + cleanPath + "\"");
             fs.unlink(cleanPath);
         }
     }
