@@ -89,6 +89,7 @@ var fesrcb = {
         });
 
         readlineInterface.question("按下\"q\"结束fesrcb\n", function (answer) {
+            console.log(answer)
             if(answer == "q")
             {
                 fis3ReleaseProcess.kill();
