@@ -1,6 +1,6 @@
 {
   "name": "fe-src-builder",
-  "version": "1.0.53",
+  "version": "1.0.54",
   "description": "fe-src-builder for fe-src",
   "main": "index.js",
   "scripts": {
