@@ -83,7 +83,8 @@ var fesrcb = {
 
         var fis3ReleaseProcess = childProcess.exec(fis3ReleaseCMD);
 
-        fis3ReleaseProcess.on("close", function () {
+        fis3ReleaseProcess.on("close", function (code, signal) {
+            console.log(code + ":" + signal)
             fesrcb.cleanTmpFiles();
             process.exit(1);
         });
