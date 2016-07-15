@@ -19,7 +19,7 @@ function getConfig() {
 };
 
 var fesrcb = {
-    init: function () {
+    init: function (complete) {
 
         if(fs.existsSync(configFilePath))
         {
@@ -33,7 +33,7 @@ var fesrcb = {
             tplData = tplData.replace("_FESRC_PATH_", answer);
             fs.writeFileSync(configFilePath, tplData, "utf8");
             readlineInterface.close();
-
+            complete && complete();
         });
 
     },
@@ -41,7 +41,9 @@ var fesrcb = {
 
         if(fs.existsSync(configFilePath) == false)
         {
-            fesrcb.init();
+            fesrcb.init(function () {
+                fesrcb.cmd(cmd);
+            });
         }
 
         commander
