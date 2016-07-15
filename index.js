@@ -88,8 +88,11 @@ var fesrcb = {
             process.exit(1);
         });
 
-        readlineInterface.question("按下任意键结束fesrcb", function (answer) {
-            fis3ReleaseProcess.kill();
+        readlineInterface.question("按下\"q\"结束fesrcb\n", function (answer) {
+            if(answer == "q")
+            {
+                fis3ReleaseProcess.kill();
+            }
         });
 
     },
