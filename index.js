@@ -39,7 +39,7 @@ function delFolder(path) {
                 fs.unlinkSync(path);
             }
         });
-        fs.redirSync(path);
+        fs.rmdirSync(path);
     }
 };
 
