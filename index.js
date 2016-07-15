@@ -83,7 +83,7 @@ var fesrcb = {
 
         childProcess.exec(fis3ReleaseCMD, function (err, stdout, stdin) {
             console.log(stdout);
-        }).on("data", function (data) {
+        }).on("message", function (data) {
             console.log(data)
         });
 
