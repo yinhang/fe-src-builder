@@ -85,7 +85,11 @@ var fesrcb = {
             cwd: fesrcPath
         }).toString());
 
-        process.exit(1);
+
+        if(!watch)
+        {
+            process.exit(1);
+        }
 
     },
     buildRJS: function () {
