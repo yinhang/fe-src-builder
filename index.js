@@ -81,15 +81,9 @@ var fesrcb = {
 
         console.log("fis3: "+ fis3ReleaseCMD)
 
-        console.log(childProcess.execSync(fis3ReleaseCMD, {
-            cwd: fesrcPath
-        }).toString());
-
-        console.log("--wait--");
-        if(!watch)
-        {
-            process.exit(1);
-        }
+        childProcess.exec(fis3ReleaseCMD, function (err, stdout, stdin) {
+            console.log(stdout);
+        });
 
     },
     buildRJS: function () {
