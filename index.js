@@ -56,18 +56,6 @@ var fesrcb = {
         fesrcb.clean();
         fesrcb.fisRelease(commander.mode, commander.watch);
 
-        process.on("SIGINT", function () {
-            console.log("test: SIGINT")
-        });
-
-        process.on("exit", function () {
-            console.log("test: exit")
-        });
-
-        process.on("beforeExit", function () {
-            console.log("test: beforeExit")
-        });
-
     },
     fisRelease: function (mode, watch) {
 
