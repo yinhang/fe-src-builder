@@ -56,10 +56,6 @@ var fesrcb = {
         fesrcb.clean();
         fesrcb.fisRelease(commander.mode, commander.watch);
 
-        process.on("SIGKILL", function () {
-            console.log("test: sigkill")
-        });
-
         process.on("disconnect", function () {
             console.log("test: disconnect")
         });
