@@ -85,13 +85,21 @@ var fesrcb = {
             cwd: fesrcPath
         });
 
-        fis3ReleaseProcess.on("close", function (code, signal) {
+        var processExited = false;
+        var fis3ReleaseProcessExited = false;
+
+        fis3ReleaseProcess.on("exit", function (code, signal) {
+            fis3ReleaseProcessExited = true;
             fesrcb.cleanTmpFiles();
-            process.exit(1);
+            if(processExited == false)
+            {
+                process.exit(0);
+            }
         });
 
-        readlineInterface.question("按下\"回车\"结束fesrcb\n", function (answer) {
-            if(answer == "q")
+        process.on("beforeExit", function (code) {
+            processExited = true;
+            if(fis3ReleaseProcessExited == false)
             {
                 fis3ReleaseProcess.kill();
             }
