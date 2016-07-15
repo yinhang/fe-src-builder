@@ -52,7 +52,6 @@ var fesrcb = {
         }
 
         var tplData = fs.readFileSync(__dirname + "/res/fesrcb-config_tpl.json", "utf8");
-        tplData = tplData.replace("_PROJECT_PATH_", env.PWD);
 
         readlineInterface.question("请输入fe-src路径: " + env.PWD + "/", function (answer) {
             tplData = tplData.replace("_FESRC_PATH_", answer);
@@ -91,7 +90,7 @@ var fesrcb = {
 
         var config = getConfig();
 
-        var fesrcPath = config.projectPath + "/" + config.fesrcPath;
+        var fesrcPath = env.PWD + "/" + config.fesrcPath;
 
         var fis3ReleaseCMD = [
             "fis3 release"
@@ -137,7 +136,7 @@ var fesrcb = {
 
         var config = getConfig();
 
-        var fesrcPath = config.projectPath + "/" + config.fesrcPath;
+        var fesrcPath = env.PWD + "/" + config.fesrcPath;
         var staticPath = fesrcPath + "/static";
         var jsPath = staticPath + "/js";
         var bootDir = jsPath + "/app/boot";
@@ -173,7 +172,7 @@ var fesrcb = {
 
         var config = getConfig();
 
-        var fesrcPath = config.projectPath + "/" + config.fesrcPath;
+        var fesrcPath = env.PWD + "/" + config.fesrcPath;
         var staticPath = fesrcPath + "/static";
         var jsPath = staticPath + "/js";
         var bootDir = jsPath + "/app/boot";
@@ -226,11 +225,9 @@ var fesrcb = {
 
         var clean = config.clean;
 
-        var projectPath = config.projectPath;
-
         for(var i = 0, l = clean.length; i < l; ++ i)
         {
-            var cleanPath = projectPath + "/" + clean[i];
+            var cleanPath = env.PWD + "/" + clean[i];
             if(fs.existsSync(cleanPath))
             {
                 console.log("清理\"" + cleanPath + "\"");
