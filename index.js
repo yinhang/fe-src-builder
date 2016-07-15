@@ -85,7 +85,7 @@ var fesrcb = {
             cwd: fesrcPath
         }).toString());
 
-
+        console.log("--wait--");
         if(!watch)
         {
             process.exit(1);
