@@ -217,7 +217,6 @@ var fesrcb = {
             {
                 console.log("删除\"" + cleanPath + "\"");
                 fs.chmodSync(cleanPath, "777");
-                fs.unlink(cleanPath);
             }
         }
     }
