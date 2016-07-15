@@ -81,15 +81,15 @@ var fesrcb = {
 
         console.log("fis3: "+ fis3ReleaseCMD)
 
-        var childProcess = childProcess.exec(fis3ReleaseCMD);
+        var fis3ReleaseProcess = childProcess.exec(fis3ReleaseCMD);
 
-        childProcess.on("close", function () {
+        fis3ReleaseProcess.on("close", function () {
             fesrcb.cleanTmpFiles();
             process.exit(1);
         });
 
         readlineInterface.question("按下任意键结束fesrcb", function (answer) {
-            childProcess.kill();
+            fis3ReleaseProcess.kill();
         });
 
     },
