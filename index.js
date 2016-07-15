@@ -56,10 +56,6 @@ var fesrcb = {
         fesrcb.clean();
         fesrcb.fisRelease(commander.mode, commander.watch);
 
-        readlineInterface.question("输入\"回车\"结束fesrcb", function (answer) {
-            process.exit(0);
-        });
-
     },
     fisRelease: function (mode, watch) {
 
