@@ -36,7 +36,7 @@ function delFolder(path) {
             }
             else
             {
-                fs.unlinkSync(path);
+                fs.unlinkSync(subPath);
             }
         });
         fs.rmdirSync(path);
