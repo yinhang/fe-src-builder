@@ -222,8 +222,6 @@ var fesrcb = {
     },
     clean: function () {
 
-        console.log("删除老文件。。。");
-
         var config = getConfig();
 
         var clean = config.clean;
@@ -235,7 +233,7 @@ var fesrcb = {
             var cleanPath = projectPath + "/" + clean[i];
             if(fs.existsSync(cleanPath))
             {
-                console.log("删除\"" + cleanPath + "\"");
+                console.log("清理\"" + cleanPath + "\"");
                 delFolder(cleanPath);
             }
         }
