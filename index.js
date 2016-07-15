@@ -103,6 +103,7 @@ var fesrcb = {
 
                     fs.writeFileSync(appBootPath + "/boot_aio.js", fs.readFileSync(jsPath + "/boot_aio.js", "utf8"), "utf8");
                     fs.unlink(jsPath + "/boot_aio.js");
+                    fs.unlink(jsPath + "/boot.js");
                 }
             }
 
