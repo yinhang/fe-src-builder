@@ -85,7 +85,7 @@ var fesrcb = {
             stdio: [
                 0, // Use parents stdin for child
                 'pipe', // Pipe child's stdout to parent
-                null
+                fs.openSync('err.out', 'w')
             ]
         });
 
