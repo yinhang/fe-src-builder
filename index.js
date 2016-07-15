@@ -199,7 +199,7 @@ var fesrcb = {
                 if(stat.isDirectory())
                 {
                     console.log("处理\"" + appBootPath + "\"");
-                    fs.writeFileSync(appBootPath + "/version.js", new Date().getTime() + "");
+                    fs.writeFileSync(appBootPath + "/version.js", "var version = " + new Date().getTime() + ";");
                     fs.writeFileSync(jsPath + "/boot.js", fs.readFileSync(appBootPath + "/boot.js", "utf8"), "utf8");
 
                     console.log(childProcess.execSync("r.js -o rjsbuild.txt out=boot_aio.js optimize=none", {
